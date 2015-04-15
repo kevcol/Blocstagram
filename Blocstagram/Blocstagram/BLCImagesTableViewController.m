@@ -30,8 +30,8 @@
     return self;
 }
 
-- (NSArray *) items {
-    return [BLCDataSource sharedInstance].mediaItems;
+- (NSMutableArray *) items {
+    return [[BLCDataSource sharedInstance].mediaItems mutableCopy];
 }
 
 
@@ -105,7 +105,10 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         
-        //[[self items] removeObjectAtIndex:indexPath.row];
+        
+        // HERE'S THE PROBLEM -- [self.items removeObjectAtIndex:indexPath.row] DOESN'T SEEM TO DELETE THE PHOTO FROM MUTABLE ARRAY?
+        
+        [self.items removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         
