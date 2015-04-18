@@ -13,7 +13,7 @@
 
 +(instancetype) sharedInstance;
 
--(void) removeItem:(BLCMedia *)item;
+- (void) deleteMediaItem:(BLCMedia *)item;
 
 - (NSArray *) mediaItems;
 

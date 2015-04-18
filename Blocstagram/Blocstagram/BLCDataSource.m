@@ -11,13 +11,41 @@
 #import "BLCMedia.h"
 #import "BLCComment.h"
 
-@interface BLCDataSource ()
-
+@interface BLCDataSource () {
+    NSMutableArray *_mediaItems;
+}
 @property (nonatomic, strong) NSMutableArray *mediaItems;
-
 @end
 
 @implementation BLCDataSource
+
+
+#pragma mark - Key/Value Observing
+
+- (NSUInteger) countOfMediaItems {
+    return self.mediaItems.count;
+}
+
+- (id) objectInMediaItemsAtIndex:(NSUInteger)index {
+    return [self.mediaItems objectAtIndex:index];
+}
+
+- (NSArray *) mediaItemsAtIndexes:(NSIndexSet *)indexes {
+    return [self.mediaItems objectsAtIndexes:indexes];
+}
+
+- (void) insertObject:(BLCMedia *)object inMediaItemsAtIndex:(NSUInteger)index {
+    [_mediaItems insertObject:object atIndex:index];
+}
+
+- (void) removeObjectFromMediaItemsAtIndex:(NSUInteger)index {
+    [_mediaItems removeObjectAtIndex:index];
+}
+
+- (void) replaceObjectInMediaItemsAtIndex:(NSUInteger)index withObject:(id)object {
+    [_mediaItems replaceObjectAtIndex:index withObject:object];
+}
+
 
 + (instancetype) sharedInstance {
     static dispatch_once_t once;
@@ -38,12 +66,9 @@
     return self;
 }
 
-- (NSArray *) mediaItems {
-    return [_mediaItems copy];
-}
-
--(void) removeItem:(BLCMedia *)item {
-    [_mediaItems removeObject:item];
+- (void) deleteMediaItem:(BLCMedia *)item {
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+    [mutableArrayWithKVO removeObject:item];
 }
 
 
@@ -73,7 +98,7 @@
         }
     }
     
-    self.mediaItems = randomMediaItems;
+    _mediaItems = randomMediaItems;
 }
 
 - (BLCUser *) randomUser {
