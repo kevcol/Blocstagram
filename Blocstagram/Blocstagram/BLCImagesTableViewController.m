@@ -53,8 +53,6 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-
     return [self items].count;
 }
 
@@ -88,7 +86,8 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     BLCMedia *item = [self items][indexPath.row];
     UIImage *image = item.image;
-    return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
+    //return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
+    return image.size.height / image.size.width * CGRectGetWidth(self.view.frame);
 }
 
 
@@ -105,7 +104,11 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         
-        //[[self items] removeObjectAtIndex:indexPath.row];
+        // FIXED
+        
+        BLCMedia *itemToDelete = [self items][indexPath.row];
+        [[BLCDataSource sharedInstance] removeItem:itemToDelete];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         
