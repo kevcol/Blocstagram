@@ -36,7 +36,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[BLCDataSource sharedInstance] addObserver:self forKeyPath:@"mediaItems" options:0 context:nil];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshControlDidFire:) forControlEvents:UIControlEventValueChanged];
+    
     [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
+}
+
+- (void) refreshControlDidFire:(UIRefreshControl *) sender {
+    [[BLCDataSource sharedInstance] requestNewItemsWithCompletionHandler:^(NSError *error) {
+        [sender endRefreshing];
+    }];
 }
 
 
@@ -134,6 +144,31 @@
     }
 }
 
+
+- (void) infiniteScrollIfNecessary {
+    NSIndexPath *bottomIndexPath = [[self.tableView indexPathsForVisibleRows] lastObject];
+    
+    if (bottomIndexPath && bottomIndexPath.row == [BLCDataSource sharedInstance].mediaItems.count - 1) {
+        // The very last cell is on screen
+        [[BLCDataSource sharedInstance] requestOldItemsWithCompletionHandler:nil];
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+
+/*  NOTE: I changed the delegate call to below per assignment but it does seem a little slow.  I'm guessing because we just load one fake photo, but when we hook up Instagram API we will load a batch.  Leaving for now, but will monitor performance */
+
+ 
+ - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+                  willDecelerate:(BOOL)decelerate {
+    [self infiniteScrollIfNecessary];
+}
+
+/* NOTE: This was the previous scroll delegate, which worked more smoothly, cuz it was loading pix earlier, I think.  Probably would be same performance with API, as noted above, but I will find out soon
+ 
+ - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self infiniteScrollIfNecessary];
+}
 
 
 
