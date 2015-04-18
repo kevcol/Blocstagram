@@ -48,24 +48,28 @@
 
 #pragma mark - Table view data source
 
+- (NSArray *) items {
+    return [BLCDataSource sharedInstance].mediaItems;
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [BLCDataSource sharedInstance].mediaItems.count;
+    return [self items].count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BLCMediaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mediaCell" forIndexPath:indexPath];
-    cell.mediaItem = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
+    cell.mediaItem = [self items][indexPath.row];
     return cell;
 }
     
 
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BLCMedia *item = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
+    BLCMedia *item = [self items][indexPath.row];
     return [BLCMediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
 }
 
@@ -85,7 +89,7 @@
         
         // FIXED
         
-        BLCMedia *itemToDelete = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
+        BLCMedia *itemToDelete = [self items][indexPath.row];
         [[BLCDataSource sharedInstance] removeItem:itemToDelete];
 
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -96,6 +100,9 @@
         
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        
+        
+        
     }   
 }
 
