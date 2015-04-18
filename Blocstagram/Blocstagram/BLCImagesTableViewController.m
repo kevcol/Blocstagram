@@ -14,7 +14,6 @@
 #import "BLCMediaTableViewCell.h"
 
 @interface BLCImagesTableViewController ()
-
 @end
 
 @implementation BLCImagesTableViewController
@@ -31,10 +30,7 @@
     return self;
 }
 
-- (NSMutableArray *) items {
-    return [[BLCDataSource sharedInstance].mediaItems mutableCopy];
-}
-
+ 
 
 
 - (void)viewDidLoad {
@@ -87,8 +83,11 @@
         // Delete the row from the data source
         
         
-        // HERE'S THE PROBLEM -- [self.items removeObjectAtIndex:indexPath.row] DOESN'T SEEM TO DELETE THE PHOTO FROM MUTABLE ARRAY?
-        [self.items removeObjectAtIndex:indexPath.row];
+        // FIXED
+        
+        BLCMedia *itemToDelete = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
+        [[BLCDataSource sharedInstance] removeItem:itemToDelete];
+
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         
