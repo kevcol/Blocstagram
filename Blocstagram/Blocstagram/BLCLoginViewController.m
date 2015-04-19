@@ -36,6 +36,13 @@ NSString *const BLCLoginViewControllerDidGetAccessTokenNotification = @"BLCLogin
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // Add title and Home button
+    [self.navigationItem setTitle:@"Log In"];
+    UIBarButtonItem *btn=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(goingBack)];
+    self.navigationItem.leftBarButtonItem=btn;
+    
+    
+    
     NSString *urlString = [NSString stringWithFormat:@"https://instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token", [BLCDataSource instagramClientID], [self redirectURI]];
     NSURL *url = [NSURL URLWithString:urlString];
     
@@ -44,6 +51,15 @@ NSString *const BLCLoginViewControllerDidGetAccessTokenNotification = @"BLCLogin
         [self.webView loadRequest:request];
     }
 }
+
+- (void)goingBack {
+    
+    [self.webView goBack];
+    
+}
+
+
+
 
 
 - (void)didReceiveMemoryWarning {
