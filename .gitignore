@@ -16,8 +16,6 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-.DS_Store
-/Blocstagram/.DS_Store
 
 # CocoaPods
 #
