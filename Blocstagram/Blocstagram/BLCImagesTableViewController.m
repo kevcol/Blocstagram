@@ -167,17 +167,20 @@
 
 /*  NOTE: I changed the delegate call to below per assignment but it does seem a little slow.  I'm guessing because we just load one fake photo, but when we hook up Instagram API we will load a batch.  Leaving for now, but will monitor performance */
 
- 
- - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                   willDecelerate:(BOOL)decelerate {
     [self infiniteScrollIfNecessary];
 }
 
+
 /* NOTE: This was the previous scroll delegate, which worked more smoothly, cuz it was loading pix earlier, I think.  Probably would be same performance with API, as noted above, but I will find out soon
  
  - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self infiniteScrollIfNecessary];
-}
+ [self infiniteScrollIfNecessary];
+ }
+
+ 
+
 
 
 // Override to support rearranging the table view.
