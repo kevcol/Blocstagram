@@ -50,6 +50,8 @@
     [self.refreshControl addTarget:self action:@selector(refreshControlDidFire:) forControlEvents:UIControlEventValueChanged];
     
     [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
+    
+    
 }
 
 - (void) refreshControlDidFire:(UIRefreshControl *) sender {
