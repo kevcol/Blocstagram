@@ -243,7 +243,6 @@ static NSParagraphStyle *paragraphStyle;
 - (void) downloadDoubleTapFired:(UITapGestureRecognizer *)sender {
     
     NSLog(@"Tapped double-like");
-    
    [self.delegate cell:self didDownloadDoubleTapImageView:self.mediaImageView];
     
 }
