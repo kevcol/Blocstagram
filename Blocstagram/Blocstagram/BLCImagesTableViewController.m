@@ -220,6 +220,14 @@
     }
 }
 
+- (void) cell:(BLCMediaTableViewCell *)cell didDownloadDoubleTapImageView:(UIImageView *)imageView {
+// TRIGGER DOWNLOAD METHOD FOR THIS PARTICULAR IMAGE
+    
+    [[BLCDataSource sharedInstance] downloadImageForMediaItem:nil];
+
+}
+
+
 #pragma mark - UIViewControllerTransitioningDelegate
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
