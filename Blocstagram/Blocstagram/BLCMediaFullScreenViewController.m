@@ -69,26 +69,26 @@
     self.scrollView.minimumZoomScale = minScale;
     self.scrollView.maximumZoomScale = 1;
     
-    // IN-PROGRESS BUTTON CODE
+    // Share button
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button addTarget:self
                action:@selector(didClickShareButton:)
      forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:@"Share Image" forState:UIControlStateNormal];
-    button.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    button.frame = CGRectMake(180.0, 20.0, 160.0, 40.0);
     [self.view addSubview:button];
 }
 
-// didClickShareButton WASN'T WORKING YET, IN-PROGRESS
+// Share method
 - (void) didClickShareButton:(BLCMedia *)mediaItem {
     NSMutableArray *itemsToShare = [NSMutableArray array];
     
-    if (mediaItem.caption.length > 0) {
-        [itemsToShare addObject:mediaItem.caption];
+    if (self.media.caption.length > 0) {
+        [itemsToShare addObject:self.media.caption];
     }
     
-    if (mediaItem.image) {
-        [itemsToShare addObject:mediaItem.image];
+    if (self.media.image) {
+        [itemsToShare addObject:self.media.image];
     }
     
     if (itemsToShare.count > 0) {

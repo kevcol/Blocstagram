@@ -81,9 +81,9 @@
             // Someone set a brand new images array
             [self.tableView reloadData];
 
+            // check for new images:
+            
             if ([BLCDataSource sharedInstance].mediaItems.count > 0) {
-                
-                //get the new images
                 [[BLCDataSource sharedInstance] requestNewItemsWithCompletionHandler:nil];
             }
 
