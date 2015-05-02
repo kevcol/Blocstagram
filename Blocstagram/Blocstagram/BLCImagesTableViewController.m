@@ -75,6 +75,14 @@
         if (kindOfChange == NSKeyValueChangeSetting) {
             // Someone set a brand new images array
             [self.tableView reloadData];
+            
+            // assignment work here:
+            
+            if ([BLCDataSource sharedInstance].mediaItems.count > 0) {
+                //get the new images
+                [[BLCDataSource sharedInstance] requestNewItemsWithCompletionHandler:nil];
+            }
+            
         } else if (kindOfChange == NSKeyValueChangeInsertion ||
                    kindOfChange == NSKeyValueChangeRemoval ||
                    kindOfChange == NSKeyValueChangeReplacement) {
