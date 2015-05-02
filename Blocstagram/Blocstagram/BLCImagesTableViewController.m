@@ -52,10 +52,8 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshControlDidFire:) forControlEvents:UIControlEventValueChanged];
-    
-    [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
-    
 
+    [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
     
 }
 
@@ -82,6 +80,14 @@
         if (kindOfChange == NSKeyValueChangeSetting) {
             // Someone set a brand new images array
             [self.tableView reloadData];
+
+            if ([BLCDataSource sharedInstance].mediaItems.count > 0) {
+                
+                //get the new images
+                [[BLCDataSource sharedInstance] requestNewItemsWithCompletionHandler:nil];
+            }
+
+            
         } else if (kindOfChange == NSKeyValueChangeInsertion ||
                    kindOfChange == NSKeyValueChangeRemoval ||
                    kindOfChange == NSKeyValueChangeReplacement) {
