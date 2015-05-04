@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		172110261AEC27E6001B4759 /* BLCMediaFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172110251AEC27E6001B4759 /* BLCMediaFullScreenViewController.m */; };
 		172110291AEC2EAC001B4759 /* BLCMediaFullScreenAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 172110281AEC2EAC001B4759 /* BLCMediaFullScreenAnimator.m */; };
+		1774E0821AF6B4D80015AC22 /* BLCCircleSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1774E0811AF6B4D80015AC22 /* BLCCircleSpinnerView.m */; };
+		1774E0851AF6B9430015AC22 /* BLCLikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1774E0841AF6B9430015AC22 /* BLCLikeButton.m */; };
 		17C838C91ADCA76A00D67BDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C838C81ADCA76A00D67BDE /* main.m */; };
 		17C838CC1ADCA76A00D67BDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C838CB1ADCA76A00D67BDE /* AppDelegate.m */; };
 		17C838CF1ADCA76A00D67BDE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C838CE1ADCA76A00D67BDE /* ViewController.m */; };
@@ -51,6 +53,10 @@
 		172110251AEC27E6001B4759 /* BLCMediaFullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCMediaFullScreenViewController.m; sourceTree = "<group>"; };
 		172110271AEC2EAC001B4759 /* BLCMediaFullScreenAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCMediaFullScreenAnimator.h; sourceTree = "<group>"; };
 		172110281AEC2EAC001B4759 /* BLCMediaFullScreenAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCMediaFullScreenAnimator.m; sourceTree = "<group>"; };
+		1774E0801AF6B4D80015AC22 /* BLCCircleSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCCircleSpinnerView.h; sourceTree = "<group>"; };
+		1774E0811AF6B4D80015AC22 /* BLCCircleSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCCircleSpinnerView.m; sourceTree = "<group>"; };
+		1774E0831AF6B9430015AC22 /* BLCLikeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCLikeButton.h; sourceTree = "<group>"; };
+		1774E0841AF6B9430015AC22 /* BLCLikeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCLikeButton.m; sourceTree = "<group>"; };
 		17C838C31ADCA76A00D67BDE /* Blocstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C838C71ADCA76A00D67BDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17C838C81ADCA76A00D67BDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -175,6 +181,10 @@
 				17C838CD1ADCA76A00D67BDE /* ViewController.h */,
 				17C838CE1ADCA76A00D67BDE /* ViewController.m */,
 				17C838D31ADCA76A00D67BDE /* Images.xcassets */,
+				1774E0801AF6B4D80015AC22 /* BLCCircleSpinnerView.h */,
+				1774E0811AF6B4D80015AC22 /* BLCCircleSpinnerView.m */,
+				1774E0831AF6B9430015AC22 /* BLCLikeButton.h */,
+				1774E0841AF6B9430015AC22 /* BLCLikeButton.m */,
 				17C838C61ADCA76A00D67BDE /* Supporting Files */,
 			);
 			path = Blocstagram;
@@ -367,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1774E0851AF6B9430015AC22 /* BLCLikeButton.m in Sources */,
 				17C838CF1ADCA76A00D67BDE /* ViewController.m in Sources */,
 				172110261AEC27E6001B4759 /* BLCMediaFullScreenViewController.m in Sources */,
 				17C838CC1ADCA76A00D67BDE /* AppDelegate.m in Sources */,
@@ -378,6 +389,7 @@
 				17C839061ADCB8E600D67BDE /* BLCUser.m in Sources */,
 				17C8390F1ADCBA9100D67BDE /* BLCDataSource.m in Sources */,
 				17C839151AE2F8BB00D67BDE /* BLCLoginViewController.m in Sources */,
+				1774E0821AF6B4D80015AC22 /* BLCCircleSpinnerView.m in Sources */,
 				17C8390C1ADCBA3D00D67BDE /* BLCComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

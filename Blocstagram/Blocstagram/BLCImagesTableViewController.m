@@ -226,12 +226,11 @@
     }
 }
 
-- (void) cell:(BLCMediaTableViewCell *)cell didDownloadDoubleTapImageView:(UIImageView *)imageView {
-// TRIGGER DOWNLOAD METHOD FOR THIS PARTICULAR IMAGE
-    
-    [[BLCDataSource sharedInstance] downloadImageForMediaItem:nil];
 
+- (void) cellDidPressLikeButton:(BLCMediaTableViewCell *)cell {
+    [[BLCDataSource sharedInstance] toggleLikeOnMediaItem:cell.mediaItem];
 }
+
 
 
 #pragma mark - UIViewControllerTransitioningDelegate
