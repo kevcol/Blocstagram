@@ -14,8 +14,9 @@
 #import "BLCMediaTableViewCell.h"
 #import "BLCMediaFullScreenViewController.h"
 #import "BLCMediaFullScreenAnimator.h"
+#import "BLCCameraViewController.h"
 
-@interface BLCImagesTableViewController () <BLCMediaTableViewCellDelegate, UIViewControllerTransitioningDelegate>
+@interface BLCImagesTableViewController () <BLCMediaTableViewCellDelegate, UIViewControllerTransitioningDelegate, BLCCameraViewControllerDelegate>
 
 @property (nonatomic, weak) UIImageView *lastTappedImageView;
 
@@ -54,6 +55,13 @@
     [self.refreshControl addTarget:self action:@selector(refreshControlDidFire:) forControlEvents:UIControlEventValueChanged];
 
     [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] ||
+        [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+        UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(cameraPressed:)];
+        self.navigationItem.rightBarButtonItem = cameraButton;
+    }
+    
     
 }
 
@@ -128,6 +136,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Camera and BLCCameraViewControllerDelegate
+
+- (void) cameraPressed:(UIBarButtonItem *) sender {
+    BLCCameraViewController *cameraVC = [[BLCCameraViewController alloc] init];
+    cameraVC.delegate = self;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:cameraVC];
+    [self presentViewController:nav animated:YES completion:nil];
+    return;
+}
+
+- (void) cameraViewController:(BLCCameraViewController *)cameraViewController didCompleteWithImage:(UIImage *)image {
+    [cameraViewController dismissViewControllerAnimated:YES completion:^{
+        if (image) {
+            NSLog(@"Got an image!");
+        } else {
+            NSLog(@"Closed without an image.");
+        }
+    }];
+}
+
+
 #pragma mark - Table view data source
 
 
@@ -187,8 +216,6 @@
 }
 
 #pragma mark - UIScrollViewDelegate
-
-/*  NOTE: I changed the delegate call to below per assignment but it does seem a little slow.  I'm guessing because we just load one fake photo, but when we hook up Instagram API we will load a batch.  Leaving for now, but will monitor performance */
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                   willDecelerate:(BOOL)decelerate {
