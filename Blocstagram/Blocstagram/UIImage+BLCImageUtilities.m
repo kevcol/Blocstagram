@@ -8,6 +8,12 @@
 
 #import "UIImage+BLCImageUtilities.h"
 
+@interface BLCImageUtilities
+
+@property (nonatomic) CGSize *newSize;
+
+@end
+
 @implementation UIImage (BLCImageUtilities)
 
 - (UIImage *) imageWithFixedOrientation {
@@ -144,10 +150,10 @@
 
 - (UIImage *) imageByScalingToSize:(CGSize)size andCroppingWithRect:(CGRect)rect {
     
-    CGSize imageSize = self.captureVideoPreviewLayer.bounds.size;
-    UIImage *image = [image imageWithFixedOrientation];
+    CGSize imageSize = size;
+    UIImage *image = [self imageWithFixedOrientation];
     image = [image imageResizedToMatchAspectRatioOfSize:imageSize];
-    image = [image imageCroppedToRect:cropRect];
+    image = [image imageCroppedToRect:rect];
     
     
     
