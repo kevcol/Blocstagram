@@ -11,6 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "BLCCameraToolbar.h"
 #import "UIImage+BLCImageUtilities.h"
+#import "BLCCropBox.h"
 
 @interface BLCCameraViewController () <BLCCameraToolbarDelegate, UIAlertViewDelegate>
 
@@ -20,14 +21,15 @@
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
 @property (nonatomic, strong) AVCaptureStillImageOutput *stillImageOutput;
 
-
-
 @property (nonatomic, strong) NSArray *horizontalLines;
 @property (nonatomic, strong) NSArray *verticalLines;
+
 @property (nonatomic, strong) UIToolbar *topView;
 @property (nonatomic, strong) UIToolbar *bottomView;
 
+@property (nonatomic, strong) BLCCropBox *cropBox;
 @property (nonatomic, strong) BLCCameraToolbar *cameraToolbar;
+
 
 @end
 
@@ -107,6 +109,7 @@
     self.imagePreview = [UIView new];
     self.topView = [UIToolbar new];
     self.bottomView = [UIToolbar new];
+    self.cropBox = [BLCCropBox new];
     self.cameraToolbar = [[BLCCameraToolbar alloc] initWithImageNames:@[@"rotate", @"road"]];
     self.cameraToolbar.delegate = self;
     UIColor *whiteBG = [UIColor colorWithWhite:1.0 alpha:.15];

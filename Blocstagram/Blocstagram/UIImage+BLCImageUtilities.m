@@ -146,7 +146,6 @@
     return image;
 }
 
-#warning I KNOW THIS ISN'T RIGHT, BUT IT'S AS FAR AS I GOT
 
 - (UIImage *) imageByScalingToSize:(CGSize)size andCroppingWithRect:(CGRect)rect {
     
